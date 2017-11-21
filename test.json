@@ -1,35 +1,50 @@
-[{
-			"date": "2014-03-01 08",
-			"Running VM's": 8,
-			"Paused VM's": 5
+	[{
+			"category": "2014-03-01",
+			"column-1": 8,
+			"column-2": 8
 		},
 		{
-			"date": "2014-03-01 09",
-			"Running VM's": 6,
-			"Paused VM's": 7
+			"category": "2014-03-02",
+			"column-1": 16,
+			"column-2": 8
 		},
 		{
-			"date": "2014-03-01 10",
-			"Running VM's": 2,
-			"Paused VM's": 3
+			"category": "2014-03-03",
+			"column-1": 2,
+			"column-2": 8
 		},
 		{
-			"date": "2014-03-01 11",
-			"Running VM's": 1,
-			"Paused VM's": 3
+			"category": "2014-03-04",
+			"column-1": 7,
+			"column-2": 8
 		},
 		{
-			"date": "2014-03-01 12",
-			"Running VM's": 2,
-			"Paused VM's": 1
+			"category": "2014-03-05",
+			"column-1": 5,
+			"column-2": 8
 		},
 		{
-			"date": "2014-03-01 13",
-			"Running VM's": 3,
-			"Paused VM's": 2
+			"category": "2014-03-06",
+			"column-1": 9,
+			"column-2": 8
 		},
 		{
-			"date": "2014-03-01 14",
-			"Running VM's": 6,
-			"Paused VM's": 8
-    }]
+			"category": "2014-03-07",
+			"column-1": 4,
+			"column-2": 8
+		},
+		{
+			"category": "2014-03-08",
+			"column-1": 15,
+			"column-2": 8
+		},
+		{
+			"category": "2014-03-09",
+			"column-1": 12,
+			"column-2": 8
+		},
+		{
+			"category": "2014-03-10",
+			"column-1": 17,
+			"column-2": 8
+		}]
