@@ -1,0 +1,92 @@
+[
+    {
+			"category": "2014-03-01",
+			"Running VM's": 8,
+			"Paused VM's": 53,
+			"Non-Compliant VM's": 62
+		},
+		{
+			"category": "2014-03-02",
+			"Running VM's": 16,
+			"Paused VM's": 82,
+			"Non-Compliant VM's": 97
+		},
+		{
+			"category": "2014-03-03",
+			"Running VM's": 2,
+			"Paused VM's": 46,
+			"Non-Compliant VM's": 68
+		},
+		{
+			"category": "2014-03-04",
+			"Running VM's": 7,
+			"Paused VM's": 47,
+			"Non-Compliant VM's": 30
+		},
+		{
+			"category": "2014-03-05",
+			"Running VM's": 5,
+			"Paused VM's": 48,
+			"Non-Compliant VM's": 33
+		},
+		{
+			"category": "2014-03-06",
+			"Running VM's": 9,
+			"Paused VM's": 78,
+			"Non-Compliant VM's": 28
+		},
+		{
+			"category": "2014-03-07",
+			"Running VM's": 4,
+			"Paused VM's": 7,
+			"Non-Compliant VM's": 18
+		},
+		{
+			"category": "2014-03-08",
+			"Running VM's": 15,
+			"Paused VM's": 23,
+			"Non-Compliant VM's": 20
+		},
+		{
+			"category": "2014-03-09",
+			"Running VM's": 12,
+			"Paused VM's": 50,
+			"Non-Compliant VM's": 73
+		},
+		{
+			"category": "2014-03-10",
+			"Running VM's": 17,
+			"Paused VM's": 10,
+			"Non-Compliant VM's": 11
+		},
+		{
+			"category": "2014-03-11",
+			"Running VM's": 18,
+			"Paused VM's": 46,
+			"Non-Compliant VM's": 33
+		},
+		{
+			"category": "2014-03-12",
+			"Running VM's": 21,
+			"Paused VM's": 16,
+			"Non-Compliant VM's": 53
+		},
+		{
+			"category": "2014-03-13",
+			"Running VM's": 24,
+			"Paused VM's": 88,
+			"Non-Compliant VM's": 98
+		},
+		{
+			"category": "2014-03-14",
+			"Running VM's": 23,
+			"Paused VM's": 41,
+			"Non-Compliant VM's": 1
+		},
+		{
+			"category": "2014-03-15",
+			"Running VM's": 24,
+			"Paused VM's": 20,
+			"Non-Compliant VM's": 11
+		}
+]
