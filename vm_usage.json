@@ -1,5 +1,4 @@
-[
-    {
+   {
 			"category": "2014-03-01",
 			"Running VM's": 8,
 			"Paused VM's": 53,
@@ -89,4 +88,3 @@
 			"Paused VM's": 20,
 			"Non-Compliant VM's": 11
 		}
-]
