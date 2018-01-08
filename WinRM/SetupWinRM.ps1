@@ -1,3 +1,7 @@
+#DISCLAIMER
+#THIS WILL PUT YOU IN FORCED HTTP MODE FOR WINRM FOR NON DOMAIN MACHINES
+#THIS IS FOR TESTING ONLY, DO NOT RUN THIS IN PRODUCTION!
+
 #Define The Server Thats Being Setup
 Do { $MasterOrSlave = Read-Host "Are You Setting Up A Master or Slave Server? (Master/Slave)" }
 Until (($MasterOrSlave -eq 'Master') -OR ($MasterOrSlave -eq 'Slave'))
