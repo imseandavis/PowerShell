@@ -11,8 +11,7 @@ If ($MasterOrSlave -eq 'master')
   #Get Slave Server Manually
   $SlaveFQDN = Read-Host "Slave Server Fully Qualified Domain Name"
 }
-Else
-{
+Else {
   #Get Manually
   $MasterFQDN = Read-Host "Master Server Fully Qualified Domain Name"
   
