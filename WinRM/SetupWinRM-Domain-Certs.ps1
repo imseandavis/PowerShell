@@ -24,13 +24,12 @@ Switch ($MasterOrSlave)
 {
 	"master"
 	{
-    #Import Slave Server Certificate (Repeat This Step For All Slave EndPoints, This Should Be Automated at Some Point
-    Read-Host "Copy the Cert From The Master server Into The C:\Temp Folder And Click Any Key To Continue"
-    Write-Host "Importing Master Server Certificate..."
-    Import-Certificate -Filepath "C:\temp\cert" -CertStoreLocation "Cert:\LocalMachine\Root"
-    
-    
-    #Enable Remoting
+		#Import Slave Server Certificate (Repeat This Step For All Slave EndPoints, This Should Be Automated at Some Point
+		Read-Host "Copy the Cert From The Master server Into The C:\Temp Folder And Click Any Key To Continue"
+		Write-Host "Importing Master Server Certificate..."
+		$SlaveCert = Import-Certificate -Filepath "C:\temp\cert" -CertStoreLocation "Cert:\LocalMachine\Root"
+		
+		#Enable Remoting
 		Write-Host "Enabling WinRM Remoting...`n"
 		try
 		{
@@ -42,59 +41,12 @@ Switch ($MasterOrSlave)
 			Break
 		}
 
-    #Remove Http Listener
-    Get-ChildItem WSMan:\Localhost\listener | Where -Property Keys -eq "Transport=HTTP" | Remove-Item -Recurse
-    
-    #Disable HTTP Firewall Rule
-    Disable-NetFirewallRule -DisplayName "Windows Remote Management (HTTP-In)"
-    
-    #Add HTTPS Listener
-    try
-    {
-      New-Item -Path WSMan:\LocalHost\Listener -Transport HTTPS -Address * -CertificateThumbPrint $($MasterCert.Thumbprint) –Force
-    }
-    catch
-    {
-      "An HTTPS Listener Was Already Found! You can only have one HTTPS WinRM listener, please delete the listener and run this script again!"
-      Break
-    }
-    
-    #Turn On HTTPS Firewall Rule
-    try
-    {
-      New-NetFirewallRule -DisplayName "Windows Remote Management (HTTPS-In)" -Name "Windows Remote Management (HTTPS-In)" -Profile Any -LocalPort 5986 -Protocol TCP | Out-Null
-    }
-    catch
-    {
-      "Rule already Existed, Skipping..."
-    }
-    
-    #Do you want to setup compatibility listener to do https over 443?
-    #If Yes
-    Do {$EnableCompatibleListener = Read-Host "Do You Want To Enable Compatible HTTPS Listener For Port 443? (y/n)"}
-    Until (($EnableCompatibleListener -eq 'y') -Or ($EnableCompatibleListener -eq 'n'))
-    If ($EnableCompatibleListener -eq 'y')
-    {
-      #Turn Compatibility Listener On
-      Set-Item WSMan:\localhost\Service\EnableCompatibilityHttpsListener -Value $True
-      
-      #Set Network Connection Profile To Private Or This Won't Work
-      Set-NetConnectionProfile -NetworkCategory Private
-    }
-    
-		#Test Local Connectivity
-		Write-Host "Testing Local Service Connectivity..."
-		try
-		{
-			Test-WSMan -ErrorAction Stop | Out-Null
-			Write-Host -Foreground Green "-Passed!`n"
-		}
-		catch
-		{
-			Write-Host "An Error While Testing The Local WinRM Service, The Following Error Was Reported:`n$($Error[0].Exception.Message)`n Please correct the issue and try again!`n"
-			Break
-		}
-		
+		#Remove Http Listener
+		Get-ChildItem WSMan:\Localhost\listener | Where -Property Keys -eq "Transport=HTTP" | Remove-Item -Recurse
+
+		#Disable HTTP Firewall Rule
+		Disable-NetFirewallRule -DisplayName "Windows Remote Management (HTTP-In)"
+
 		#Test Remote Service Connectivity
 		Write-Host "Testing Service Connectivity..."
 		try
@@ -130,15 +82,15 @@ Switch ($MasterOrSlave)
 
 	"slave"
 	{
-    #Create Self Signed Certificate
-    $SlaveCert = New-SelfSignedCertificate -DnsName $MasterFQDN -CertStoreLocation Cert:\LocalMachine\My
-    
-    #Export Slave Certificate
-    Write-Host "Exporting The Master Cert..."
-    $ExportedSlaveCert = Export-Certificate -Cert $SlaveCert -FilePath C:\Temp\Cert
-    Write-Host "Your Cert Has Been Exported To: $($ExportedSlaveCert.FullName)"
-    
-    #Enable Remoting
+		#Create Self Signed Certificate
+		$SlaveCert = New-SelfSignedCertificate -DnsName $MasterFQDN -CertStoreLocation Cert:\LocalMachine\My
+
+		#Export Slave Certificate
+		Write-Host "Exporting The Master Cert..."
+		$ExportedSlaveCert = Export-Certificate -Cert $SlaveCert -FilePath C:\Temp\Cert
+		Write-Host "Your Cert Has Been Exported To: $($ExportedSlaveCert.FullName)"
+
+		#Enable Remoting
 		Write-Host "Enabling WinRM Remoting...`n"
 		try
 		{
@@ -150,33 +102,45 @@ Switch ($MasterOrSlave)
 			Break
 		}
     
-    #Remove Http Listener
-    Get-ChildItem WSMan:\Localhost\listener | Where -Property Keys -eq "Transport=HTTP" | Remove-Item -Recurse
-    
-    #Disable HTTP Firewall Rule
-    Disable-NetFirewallRule -DisplayName "Windows Remote Management (HTTP-In)"
-    
-    #Add HTTPS Listener
-    try
-    {
-      New-Item -Path WSMan:\LocalHost\Listener -Transport HTTPS -Address * -CertificateThumbPrint $($SlaveCert.Thumbprint) –Force
-    }
-    catch
-    {
-      "An HTTPS Listener Was Already Found! You can only have one HTTPS WinRM listener, please delete the listener and run this script again!"
-      Break
-    }
-    
-    #Turn On HTTPS Firewall Rule
-    try
-    {
-      New-NetFirewallRule -DisplayName "Windows Remote Management (HTTPS-In)" -Name "Windows Remote Management (HTTPS-In)" -Profile Any -LocalPort 5986 -Protocol TCP -ErrorAction Stop | Out-Null
-    }
-    catch
-    {
-      "Rule already Existed, Skipping..."
-    }
-    
+		#Remove Http Listener
+		Get-ChildItem WSMan:\Localhost\listener | Where -Property Keys -eq "Transport=HTTP" | Remove-Item -Recurse
+
+		#Disable HTTP Firewall Rule
+		Disable-NetFirewallRule -DisplayName "Windows Remote Management (HTTP-In)"
+
+		#Add HTTPS Listener
+		try
+		{
+		New-Item -Path WSMan:\LocalHost\Listener -Transport HTTPS -Address * -CertificateThumbPrint $($SlaveCert.Thumbprint) –Force
+		}
+		catch
+		{
+		"An HTTPS Listener Was Already Found! You can only have one HTTPS WinRM listener, please delete the listener and run this script again!"
+		Break
+		}
+
+		#Turn On HTTPS Firewall Rule
+		try
+		{
+		New-NetFirewallRule -DisplayName "Windows Remote Management (HTTPS-In)" -Name "Windows Remote Management (HTTPS-In)" -Profile Any -LocalPort 5986 -Protocol TCP -ErrorAction Stop | Out-Null
+		}
+		catch
+		{
+		"Rule already Existed, Skipping..."
+		}
+
+		#Do you want to setup compatibility listener to do https over 443?
+		#If Yes
+		Do {$EnableCompatibleListener = Read-Host "Do You Want To Enable Compatible HTTPS Listener For Port 443? (y/n)"}
+		Until (($EnableCompatibleListener -eq 'y') -Or ($EnableCompatibleListener -eq 'n'))
+		If ($EnableCompatibleListener -eq 'y')
+		{
+		#Turn Compatibility Listener On
+		Set-Item WSMan:\localhost\Service\EnableCompatibilityHttpsListener -Value $True
+
+		#Set Network Connection Profile To Private Or This Won't Work
+		Set-NetConnectionProfile -NetworkCategory Private
+		}
 
 		#Test Local Connectivity
 		Write-Host "Testing Local Service Connectivity..."
