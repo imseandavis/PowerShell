@@ -56,9 +56,9 @@ Switch ($MasterOrSlave)
 			Write-Host "-Get Server Name"
 			$SlaveServerName = Invoke-Command -Computer $SlaveFQDN -ScriptBlock {(Get-CimInstance Win32_ComputerSystem).Name}
 			Write-Host "-Get Server GUID"
-			$SlaveServerGUID = Invoke-Command -Computer $SlaveInternalFQDN -ScriptBlock {(Get-CimInstance Win32_ComputerSystemProduct).UUID }
+			$SlaveServerGUID = Invoke-Command -Computer $SlaveFQDN -ScriptBlock {(Get-CimInstance Win32_ComputerSystemProduct).UUID }
 			Write-Host "-Get Server OS Disk Info"
-			$SlaveServerDiskInfo = Invoke-Command -Computer $SlaveInternalFQDN -ScriptBlock { Get-WMIObject Win32_LogicalDisk | Where-Object{$_.DriveType -eq 3} | Select-Object Name, @{n='Size (GB)';e={"{0:n2}" -f ($_.size/1gb)}}, @{n='FreeSpace (GB)';e={"{0:n2}" -f ($_.freespace/1gb)}}, @{n='PercentFree';e={"{0:n2}" -f ($_.freespace/$_.size*100)}} } 
+			$SlaveServerDiskInfo = Invoke-Command -Computer $SlaveFQDN -ScriptBlock { Get-WMIObject Win32_LogicalDisk | Where-Object{$_.DriveType -eq 3} | Select-Object Name, @{n='Size (GB)';e={"{0:n2}" -f ($_.size/1gb)}}, @{n='FreeSpace (GB)';e={"{0:n2}" -f ($_.freespace/1gb)}}, @{n='PercentFree';e={"{0:n2}" -f ($_.freespace/$_.size*100)}} } 
 			Write-Host -Foreground Green "-Passed!`n"
 			Write-Host "Slave Server Info:`n Server Name: $SlaveServerName`n GUID: $SlaveServerGUID`n OS Disk Info:`n Total Size (GB): $($SlaveServerDiskInfo | Select -First 1 | Select 'Size (GB)' -ExpandProperty 'Size (GB)')`n Percent Free: $($SlaveServerDiskInfo | Select -First 1 | Select PercentFree -ExpandProperty PercentFree)%`n"
 		}
