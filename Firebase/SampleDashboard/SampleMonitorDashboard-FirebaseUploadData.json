@@ -1,0 +1,36 @@
+{
+  "Status" : {
+    "Sys2" : {
+      "Alarm" : {
+        "Current" : "Red"
+      },
+      "name" : "Sample System B",
+      "ServiceList" : {
+        "Service1" : {
+          "Value" : "Unknown.",
+          "Tag" : "Apache Status"
+        },
+        "Service2" : {
+          "Value" : "Unknown.",
+          "Tag" : "Disk Free"
+        }
+      }
+    },
+    "Sys1" : {
+      "Alarm" : {
+        "Current" : "Yellow"
+      },
+      "name" : "Sample System A",
+      "ServiceList" : {
+        "Service1" : {
+          "Value" : "Unknown.",
+          "Tag" : "IIS Status"
+        },
+        "Service2" : {
+          "Value" : "Unknown.",
+          "Tag" : "Memory Use"
+        }
+      }
+    }
+  }
+}

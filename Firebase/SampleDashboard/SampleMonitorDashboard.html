@@ -1,0 +1,54 @@
+<!doctype html>
+<html ng-app="statusmon">
+	
+	<head>
+		<title>Status Monitor</title>
+
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.32/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+		<script src="https://cdn.firebase.com/js/client/2.1.1/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
+	</head>
+	
+	<body ng-controller="MonitorCtrl">
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="">Status Monitor</a>
+			</div>
+		  </div>
+		</nav>
+		
+		<tabset>
+		  <tab ng-repeat="sys in Data.Status">
+			<tab-heading ng-class="getStatusClass(sys.Alarm.Current)">
+			  {{sys.name}}
+			</tab-heading>
+			<ul class="list-group">
+			  <li ng-repeat="srv in sys.ServiceList" class="list-group-item">{{srv.Tag}}: {{srv.Value}}</li>
+			</ul>
+		  </tab>
+		</tabset>
+		
+		<script>
+		  var statusColors = {
+			'Red':'bg-danger',
+			'Yellow':'bg-warning',
+			'Green':'bg-success'
+		  };
+		  var app = angular.module('statusmon', ['firebase', 'ui.bootstrap']);
+		  function MonitorCtrl($scope, $firebase) {
+			var ref = new Firebase('https://poshfbdemo.firebaseio.com/');
+			$scope.Data = $firebase(ref);
+			$scope.getStatusClass = function(status) {
+			  var statusClass = statusColors[status];
+			  return (statusClass) ? statusClass : '';
+			}
+		  }
+		</script>
+	
+	</body>
+</html>
