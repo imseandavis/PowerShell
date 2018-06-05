@@ -3,19 +3,19 @@
  "color": "green",
  "data": [
   {
-   "hour": 0,
+   "hour": 1,
    "value": 4
   },
   {
-   "hour": 1,
+   "hour": 2,
    "value": 1
   },
   {
-   "hour": 2,
+   "hour": 3,
    "value": 6
   },
   {
-   "hour": 3,
+   "hour": 4,
    "value": 2
   }
  ]
