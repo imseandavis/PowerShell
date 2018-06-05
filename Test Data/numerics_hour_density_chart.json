@@ -7,15 +7,15 @@
    "value": 4
   },
   {
-   "date": 1,
+   "hour": 1,
    "value": 1
   },
   {
-   "date": 2,
+   "hour": 2,
    "value": 6
   },
   {
-   "date": 3,
+   "hour": 3,
    "value": 2
   }
  ]
