@@ -3,36 +3,36 @@
  "valueHeader": "Confirmed Kills",
  "data": [
   {
-   "name": "Iron Man"
+   "name": "Iron Man",
    "value": 36
   },
   {
-   "name": "Captain America"
+   "name": "Captain America",
    "value": 31
   },
   {
-   "name": "Thor"
+   "name": "Thor",
    "value": 13
   },
   {
-   "name": "Loki"
+   "name": "Loki",
    "value": 7
   },
   {
-   "name": "Black Widow"
+   "name": "Black Widow",
    "value": 5
   },
   {
-   "name: "Hawkeye"
+   "name": "Hawkeye",
    "value": 3
   },
   {
-   "name": "Hulk"
+   "name": "Hulk",
    "value": 3
   },
   {
-   "name": "Nick Fury"
+   "name": "Nick Fury",
    "value": 2
-  },
+  }
  ]
 }
