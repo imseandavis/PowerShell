@@ -1,7 +1,7 @@
 {
- "postfix": "Build Status",
- "color": "green",
- "data": {
-   "value": "Passed"
- }
+"postfix": "Build Status",
+"color": "green",
+"data": {
+"value": "Passed"
+}
 }
