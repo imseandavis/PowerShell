@@ -1,6 +1,10 @@
 {
- "postfix": "Build Count",
+ "postfix": "Builds",
  "data": [
+  {
+   "hour": 0,
+   "value": 4
+  },
   {
    "hour": 1,
    "value": 4
@@ -15,6 +19,82 @@
   },
   {
    "hour": 4,
+   "value": 2
+  },
+    {
+   "hour": 5,
+   "value": 4
+  },
+  {
+   "hour": 6,
+   "value": 1
+  },
+  {
+   "hour": 7,
+   "value": 6
+  },
+  {
+   "hour": 8,
+   "value": 2
+  },
+  {
+   "hour": 9,
+   "value": 4
+  },
+  {
+   "hour": 10,
+   "value": 4
+  },
+  {
+   "hour": 11,
+   "value": 1
+  },
+  {
+   "hour": 12,
+   "value": 6
+  },
+  {
+   "hour": 13,
+   "value": 2
+  },
+    {
+   "hour": 14,
+   "value": 4
+  },
+  {
+   "hour": 15,
+   "value": 1
+  },
+  {
+   "hour": 16,
+   "value": 6
+  },
+  {
+   "hour": 17,
+   "value": 2
+  },
+    {
+   "hour": 18,
+   "value": 6
+  },
+  {
+   "hour": 19,
+   "value": 2
+  },
+    {
+   "hour": 20,
+   "value": 4
+  },
+  {
+   "hour": 21,
+   "value": 1
+  },
+  {
+   "hour": 22,
+   "value": 6
+  },
+  {
+   "hour": 23,
    "value": 2
   }
  ]
