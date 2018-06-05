@@ -1,0 +1,12 @@
+{
+ "postfix": "Builds Week Over Week",
+ "color": "green",
+ "data": [
+  {
+   "value": 46
+  },
+  {
+   "value": 82
+  }
+ ]
+}
