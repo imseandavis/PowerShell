@@ -1,0 +1,22 @@
+{
+ "postfix": "Build Count",
+ "color": "green",
+ "data": [
+  {
+   "name": "Monday",
+   "value": 44
+  },
+  {
+   "name": "Tuesday",
+   "value": 61
+  },
+  {
+   "name": "Wednesday",
+   "value": 78
+  },
+  {
+   "name": "Thursday",
+   "value": 72
+  }
+ ]
+}
