@@ -1,12 +1,12 @@
 {
   "IsEncrypted": false,
   "Value": {
-    "AzureWebJobsDashboard": "DefaultEndpointsProtocol=https;AccountName=saasazurefunctions;AccountKey=Xh1+Pm8YOy+VycxZ3NmPjwN4tQCwUDm2Acu1Z+QnUj6m/MQR7cIYZgxvlxftG3B9LpXimV3Tn1JyHOIPwAJALg==",
+    "AzureWebJobsDashboard": "DefaultEndpointsProtocol=https;AccountName=saasazurefunctions;AccountKey=",
     "WEBSITE_SITE_NAME": "saas-social-media",
     "WEBSITE_AUTH_ENABLED": "False",
     "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0",
     "FUNCTIONS_EXTENSION_VERSION": "~1",
     "ScmType": "None",
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=saasazurefunctions;AccountKey=Xh1+Pm8YOy+VycxZ3NmPjwN4tQCwUDm2Acu1Z+QnUj6m/MQR7cIYZgxvlxftG3B9LpXimV3Tn1JyHOIPwAJALg=="
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=saasazurefunctions;AccountKey="
   }
 }
