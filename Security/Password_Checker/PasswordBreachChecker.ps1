@@ -27,4 +27,4 @@ $Seen = ForEach ($PassHash in $PassHashes)
  }
 }
  
-"Your Password: $Password has been exposed {0:n0} times." -f $seen
+"Your Password: $Password has been exposed {0:n0} times." -f $Seen
