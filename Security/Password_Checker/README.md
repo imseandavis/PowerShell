@@ -10,7 +10,7 @@ Here's how the magic happens...<br>
 * The First 5 Bytes Of The Hash Are Sent To The API So You Don't Compromise Your Hash
 * All Hashes That Start With The 5 Bytes Sent Are Returned
 * PowerShell Locally Checks For Exact Matches To Your Password Hash And Reports How Many Times It Was Found
-<br>
+
 # Good Response
 ![Password Breach Checker CLI Good Response](PasswordBreachCheckerCLI-Good.png)
 <br>
