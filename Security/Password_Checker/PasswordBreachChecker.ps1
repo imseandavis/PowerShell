@@ -1,5 +1,5 @@
 # Get Password To Examine
-$Password = Read-Host
+$Password = Read-Host "What's The Password You Want To Check?"
  
 # Enable All SSL protocols
 [Net.ServicePointManager]::SecurityProtocol = 'Ssl3,Tls, Tls11, Tls12'
@@ -22,9 +22,9 @@ $PassHashes = $Response -split '\r\n'
 $Seen = ForEach ($PassHash in $PassHashes)
 {
  If ($PassHash.StartsWith($Suffix)) { 
-   [int]($$PassHash -split ':' )[-1]
+   [int]($PassHash -split ':' )[-1]
    Break
  }
 }
  
-"Your Password: $Password has been found in {0:n0} breaches." -f $seen
+"Your Password: $Password has been exposed {0:n0} times." -f $seen
