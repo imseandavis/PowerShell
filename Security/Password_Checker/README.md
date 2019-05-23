@@ -7,7 +7,7 @@ I created this very simple script to check to see if your password is listed in 
 Run the script and put your password in and it will notify you how many times your password has been found in a public list or data breach.
 <br><br>
 Here's how the magic happens...<br>
-* You Enter Your Password (I Let It Display In Clear Text So You Can Tell If You Type It Correctly)
+* You Enter Your Password (I Let It Display In Clear Text So You Can Tell If You Typed It Correctly)
 * A Hash Is Created From Your Password So You Don't Expose Your Password To The HAVEIBEENPWND Service
 * The First 5 Bytes Of The Hash Are Sent To The API So You Don't Compromise Your Hash
 * All Hashes That Start With The 5 Bytes Sent Are Returned
