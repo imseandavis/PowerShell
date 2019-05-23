@@ -1,5 +1,5 @@
 ## HAVEIBEENPWNED Breached Password Checker
-Put the current password your using into the checker and it will go out and retrieve all instances of the password found on HAVEIBEENPWNED.COM using the [HAVEIBEENPWNED API](https://haveibeenpwned.com/API/v2).<br>
+Put the current password your using into the checker and it will go out and retrieve all instances of the password found on HAVEIBEENPWNED.COM using the older version of the [HAVEIBEENPWNED API](https://haveibeenpwned.com/API/v2). If you want to integrate a similar solution into your Active Directory (for free) for your entire company, check out [Jackson's page](https://jacksonvd.com/checking-for-breached-passwords-ad-using-k-anonymity/).<br>
 
 ## Instructions
 Run the script and put your password in and it will notify you how many times your password has been found in a public list or data breach.
