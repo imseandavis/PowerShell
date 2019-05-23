@@ -1,5 +1,7 @@
 ## HAVEIBEENPWNED Breached Password Checker
-Put the current password your using into the checker and it will go out and retrieve all instances of the password found on HAVEIBEENPWNED.COM using the older version of the [HAVEIBEENPWNED API](https://haveibeenpwned.com/API/v2). If you want to integrate a similar solution into your Active Directory (for free) for your entire company, check out [Jackson's page](https://jacksonvd.com/checking-for-breached-passwords-ad-using-k-anonymity/).<br>
+I created this very simple script to check to see if your password is listed in any breach or combo list publish by Troy Hunt's HAVEIBEENPWNED website. Just put a password into the checker and it will go out and retrieve all instances of the password found on HAVEIBEENPWNED.COM using the older version of the [HAVEIBEENPWNED API](https://haveibeenpwned.com/API/v2).<br>
+* If you'd rather have a turnkey Powershell Module, check out [Mark's Gallery Page](https://www.powershellgallery.com/packages/HaveIBeenPwned/1.3.1) or simply open PowerShell and run:<br> `Install-Module -Name HaveIBeenPwned`
+* Finally, if you want to integrate a this solution into your Active Directory (for free) for your entire company, check out [Jackson's page](https://jacksonvd.com/checking-for-breached-passwords-ad-using-k-anonymity/).
 
 ## Instructions
 Run the script and put your password in and it will notify you how many times your password has been found in a public list or data breach.
