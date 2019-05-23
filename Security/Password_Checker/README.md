@@ -4,4 +4,4 @@ Put the current password your using into the checker and it will go out and retr
 ## Instructions
 Run the script and put your password in and it will notify you how many times your password has been found in a public list or data breach.
 <br><br>
-![Password Breach Checker CLI](/PasswordBreachCheckerCLI.png)
+![Password Breach Checker CLI](PasswordBreachCheckerCLI.png)
