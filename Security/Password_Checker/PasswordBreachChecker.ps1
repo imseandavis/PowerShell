@@ -19,12 +19,20 @@ $Response = Invoke-RestMethod -Uri $URL -UseBasicParsing
  
 # Find The Exact Matche(s)
 $PassHashes = $Response -split '\r\n'
-$Seen = ForEach ($PassHash in $PassHashes)
+$SeenCount = ForEach ($PassHash in $PassHashes)
 {
  If ($PassHash.StartsWith($Suffix)) { 
    [int]($PassHash -split ':' )[-1]
    Break
  }
 }
- 
-"Your Password: $Password has been exposed {0:n0} times." -f $Seen
+
+# Inform The User If Their Password Has Been Listed
+If ($SeenCount -ge 1)
+{
+ Write-Host -Foreground Red "Your Password: $Password has been exposed $SeenCount times."
+}
+Else
+{
+ Write-Host -Foreground Green "Congratulations! Your Password wasn't found in any breaches."
+}
