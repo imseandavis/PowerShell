@@ -24,7 +24,7 @@ ForEach($ServerName in $ServerList)
 }
 
 
-#Or Process Them Serially - Faster
+#Or Process Them Semi Serial - Faster
 ForEach($ServerName in $ServerList)
 {
 	Write-Host "Processing $ServerName...."
@@ -46,3 +46,6 @@ ForEach($ServerName in $ServerList)
 	Write-Host "-Starting VM $ServerName"
 	gcloud compute instances start $ServerName --zone $Zone
 }
+
+#Or Process Them Parallel - Fastest
+#TODO WRITE SOME CODE :)
