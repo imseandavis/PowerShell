@@ -1,3 +1,5 @@
+#Be Careful With Files That Have More Than 1 Period In Them. I Don't Account For That
+
 #Init Variables
 $ScanDirectory = "C:\Movies" #Update With Your Path
 
