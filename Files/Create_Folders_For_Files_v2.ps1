@@ -23,7 +23,7 @@ ForEach ($File in $FileList)
 			try
 			{
 				Write-Host " -Moving File: $ScanDirectory\$($File.Name)"
-				Move-Item -Path "$ScanDirectory\$($File.Name)" -Destination "$(`"$ScanDirectory\$(($File.Name).Split('.')[0])`")\$($File.Name)" | Out-Null
+				Move-Item -LiteralPath "$ScanDirectory\$($File.Name)" -Destination "$(`"$ScanDirectory\$(($File.Name).Split('.')[0])`")\$($File.Name)" | Out-Null
 			}
 			catch
 			{
