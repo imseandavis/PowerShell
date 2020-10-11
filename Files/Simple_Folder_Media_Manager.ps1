@@ -1,10 +1,11 @@
 # Init Variables
-$ScanDirectory = "C:\YourFileDir" #Update With Your Path
+$ScanDirectory = "\\192.168.1.10\Videos\Movies" #Update With Your Path
 
 # Get All Files In A Directory Non Recurse
 $FileList = Get-ChildItem $ScanDirectory -File
 $TotalFileCount = 0
 $SuccessCount = 0
+$DuplicateCount = 0
 $AlreadyExistsCount = 0
 
 # Loop Through Each Movie
@@ -31,8 +32,22 @@ ForEach ($File in $FileList)
 	}
 	Else
 	{
-		Write-Host -Foreground Yellow " --File Already Exist, Please Manually Check Which Version You Want To Keep"
-		$AlreadyExistsCount++
+		$SourceFileSize = $File.Length
+		$DestinationFileSize = (Get-ChildItem $ScanDirectory\$($File.BaseName)\$($File.Name)).Length
+		
+		#If The Source and Destination File Size Is The Same, Delete It
+		If($SourceFileSize -eq $DestinationFileSize)
+		{
+			$DuplicateCount++
+			
+			Write-Host "  --Found Duplicate File, Deleting...: $ScanDirectory\$($File.Name)"
+			Remove-Item -LiteralPath "$ScanDirectory\$($File.Name)"
+		}
+		Else
+		{
+			$AlreadyExistsCount++
+			Write-Host -Foreground Yellow " --File Already Exist And Is A Different Size, Please Manually Check Which Version You Want To Keep"
+		}
 	}
 
 	# Added For Cleaner Readable Output
@@ -43,4 +58,5 @@ Write-Host "Session Stats"
 Write-Host "-------------"
 Write-Host "Total Files Handled: $TotalFileCount"
 Write-Host "Successful File Moves: $SuccessCount"
+Write-Host "Deleted Duplicate Files: $DuplicateCount"
 Write-Host "Already Exist Conflicts: $AlreadyExistsCount"
