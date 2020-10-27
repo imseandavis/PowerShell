@@ -1,6 +1,6 @@
 # UCF Policy Scraper
 # Scrapes Unified Compliance Policies From The Website And Dumps Them Into a Database
-# Version: 1.03
+# Version: 1.08
 # By: Sean Davis
 
 # Variables
