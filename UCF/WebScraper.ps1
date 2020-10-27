@@ -32,8 +32,11 @@ catch
 # Loop Through ControlList and Retrieve Data For Each Control
 Do
 {
+	# Clear Previous Stored Content
+	$Control = ""
+	
 	# Get The Website Data
-	$Control = $null = Invoke-WebRequest -URI "$BaseURL/$CurrentControlNumber"
+	$Control = Invoke-WebRequest -URI "$BaseURL/$CurrentControlNumber"
 
 	# Break Out Each Section of Data
 	If($Control.StatusCode -eq 200)
@@ -41,7 +44,17 @@ Do
 		$Count = 0
 		$SupportingControls = @()
 		$ControlID = ($Control.ParsedHTML.getElementById('divCommonControlID').innerHTML -Split('<BR>'))[1]
-		$CommonControlName = ($Control.ParsedHTML.getElementById('h2CommonControlName').innerHTML).replace("'","\'")
+		
+		# Check To See If The Control Name Exists
+		If($Control.ParsedHTML.getElementById('h2CommonControlName').innerHTML -eq $null)
+		{
+			$CommonControlName = "NOT FOR USE"
+		}
+		Else
+		{
+			$CommonControlName = ($Control.ParsedHTML.getElementById('h2CommonControlName').innerHTML).replace("'","\'")
+		}
+		
 		$CommonControlType = ($Control.ParsedHTML.getElementById('divCommonControlType').innerHTML -Split('<BR>'))[1]
 		$Classification = ($Control.ParsedHTML.getElementById('divCommonControlClassification').innerHTML -Split('<BR>'))[1]
 		
@@ -98,9 +111,4 @@ Do
 		#Write-Warning "DEBUG - MySQLCommand: $($MySQLCommand.CommandText)"
 	}
 }
-While ($CurrentControlNumber -le $MaxControlNumber) 
-
-
-Impact zone
-- Common Control Title
-- Control ID
+While ($CurrentControlNumber -le $MaxControlNumber)
