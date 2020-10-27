@@ -1,6 +1,6 @@
 # UCF Citation Scraper
 # Scrapes Unified Compliance Policy Citations From The Website And Dumps Them Into a Database
-# Version: 1.04
+# Version: 1.17
 # By: Sean Davis
 
 # Variables
@@ -53,32 +53,45 @@ Do
 		}
 		Else
 		{
+			Write-Host "Process Citations $ControlID"
+			$CCount = 0
+			
 			ForEach ($CitationItem in $CitationList | Select-Object -Skip 1)
 			{
+				
+				"Citation $CCount"
+				
 				# Parse Data And Put Into A Custom Object
-				$Citation = $null = $((CitationItem -Replace('<STRONG>'))
+				#Nasty Parse Fixer Due To Windows Crappy UTF-8 Translation of ISO 8859-1 Conversions
+				$UTF8 = [System.Text.Encoding]::GetEncoding(65001)
+				$ISO88591 = [System.Text.Encoding]::GetEncoding(28591) #ISO 8859-1 ,Latin-1
+				$WrongBytes = $UTF8.GetBytes($($CitationItem -Replace('<STRONG>', '') -Replace('</STRONG>', '') -Replace('</LI></UL><BR>', '')).replace("'","\'"))
+				$RightBytes = [System.Text.Encoding]::Convert($UTF8,$ISO88591,$WrongBytes)
+				$Citation = $null = $UTF8.GetString($RightBytes)
+				
+				# Write Everything To The Database
+				$MySQLCommand = New-Object MySql.Data.MySqlClient.MySqlCommand
+				$MySQLCommand.Connection = $MySQLConnection
+				$MySQLCommand.CommandText = "INSERT into `citations` (`Control_ID`, `Citation`) VALUES('$ControlID', '$Citation')"
+				$RowsAffected = $MySQLCommand.ExecuteNonQuery()
+				
+				# Check To Make Sure The Record Was Properly Recorded
+				If($RowsAffected -lt 1)
+				{
+					Write-Warning "Unable To INSERT Into The Database!"
+					Write-Warning "Error: " + $Error[0].ToString()
+				}
+				else
+				{
+					Write-Host "Successfully Added Citation for Control #: $CurrentControlNumber"
+				}
+				
+				$CCount++
 			}
 		}
-		
-		# Write Everything To The Database
-		$MySQLCommand = New-Object MySql.Data.MySqlClient.MySqlCommand
-		$MySQLCommand.Connection = $MySQLConnection
-		$MySQLCommand.CommandText = "INSERT into `citations` (`Control_ID`, `Citation`) VALUES('$ControlID', '$Citation')"
-		$RowsAffected = $MySQLCommand.ExecuteNonQuery()
-		
-		# Check To Make Sure The Record Was Properly Recorded
-		If($RowsAffected -lt 1)
-		{
-			Write-Warning "Unable To INSERT Into The Database!"
-			Write-Warning "Error: " + $Error[0].ToString()
-		}
-		else
-		{
-			Write-Host "Successfully Added Citation for Control #: $CurrentControlNumber"
-		}
-		
+				
 		# Increment Control Number
 		$CurrentControlNumber++
 	}
 }
-While ($CurrentControlNumber -le 5)
+While ($CurrentControlNumber -le $MaxControlNumber)
