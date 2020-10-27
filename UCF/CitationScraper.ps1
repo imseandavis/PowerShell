@@ -1,3 +1,34 @@
+# UCF Citation Scraper
+# Scrapes Unified Compliance Policy Citations From The Website And Dumps Them Into a Database
+# Version: 1.04
+# By: Sean Davis
+
+# Variables
+$User = "YourUsername"
+$Password = "YourPassword"
+$ControlList = ""
+$BaseURL = "https://www.unifiedcompliance.com/products/search-controls/control"
+$CurrentControlNumber = 0
+$MaxControlNumber = 14661 #Last Known Control In Database
+
+#Init The DB Connection
+[void][System.Reflection.Assembly]::LoadWithPartialName("MySql.Data")
+$SQLQuery = @()
+$ConnectionString = "server=192.168.1.10;port=3307;database=UCF;uid=$User;pwd=$Password"
+$MySQLConnection = New-Object MySql.Data.MySqlClient.MySqlConnection($ConnectionString)
+
+# Connect To The DB
+try
+{
+	$MySQLConnection.Open()
+}
+catch
+{
+	Write-Warning "Could Not Connect To Database!"
+	Write-Warning "Error: " + $Error[0].ToString()
+	Break;
+}
+
 # Loop Through ControlList and Retrieve Citations For Each Control
 Do
 {
